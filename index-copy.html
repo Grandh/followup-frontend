@@ -2,95 +2,359 @@
 <html lang="zh-CN">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>RCT 患者管理与随访排期系统</title>
+    <title>RCT 患者管理与随访排期系统</title>
 
-  <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/css/style.css" rel="stylesheet">
-  <!-- 自定义的样式 -->
-  <link href="resources/css/main.css" rel="stylesheet">
-  <link href="resources/css/pat-list.css" rel="stylesheet">
-  <link href="resources/css/pat-main.css" rel="stylesheet">
-  <link href="resources/css/pat-followup.css" rel="stylesheet">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/style.css" rel="stylesheet">
+    <!-- 自定义的样式 -->
+    <link href="resources/css/main.css" rel="stylesheet">
+    <link href="resources/css/pat-list.css" rel="stylesheet">
+    <link href="resources/css/pat-main.css" rel="stylesheet">
+    <link href="resources/css/pat-followup.css" rel="stylesheet">
 </head>
 
 <body class="flex-container">
-  <header class="custom-header">
-    <h2>RCT患者数据管理与随访排期系统</h2>
-  </header>
+    <header class="custom-header">
+        <h2>RCT患者数据管理与随访排期系统</h2>
+    </header>
 
-  <div class="main-container">
+    <div class="main-container">
 
-    <!-- 患者列表部分
+        <!-- 患者列表部分
          分为实验组、对照组两个scroll bar 或者flowover: auto的table
     -->
-    <div class="pat-list-container">
-        <div class="panel panel-info pat-list-table">
-            <div class="panel-heading pat-list-table-heading">
-                <span>实验组</span>
-                <button type="button" class="btn btn-primary add-pat-btn">新增患者</button>
+        <div class="pat-list-container">
+            <div class="panel panel-info pat-list-table">
+                <div class="panel-heading pat-list-table-heading ">
+                    <span>实验组</span>
+                    <button type="button" class="btn btn-primary add-pat-btn">新增患者</button>
+                </div>
+                <!-- Table -->
+                <div style="height:190px;width:100%;overflow:auto">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>下次随访时间</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+                            <tr onclick='alert("hello")'>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <!-- Table -->
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>姓名</th>
-                        <th>下次随访时间</th>
-                    </tr>
-                </thead>
+            <div class="panel panel-info pat-list-table">
+                <div class="panel-heading pat-list-table-heading">
+                    <span>对照组</span>
+                    <button type="button" class="btn btn-primary add-pat-btn">新增患者</button>
+                </div>
+                <!-- Table -->
+                <div style="height:190px;width:100%;overflow:auto">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>下次随访时间</th>
+                            </tr>
+                        </thead>
 
-                <tbody>
-                    <tr onclick='alert("hello")'>
-                        <td>用户1</td>
-                        <td>2018-3-31</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="panel panel-info pat-list-table">
-            <div class="panel-heading pat-list-table-heading">
-            <span>对照组</span>
-            <button type="button" class="btn btn-primary add-pat-btn">新增患者</button>
+                        <tbody>
+                            <tr>
+                                <td>用户1</td>
+                                <td>2018-3-31</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <!-- Table -->
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>姓名</th>
-                        <th>下次随访时间</th>
-                    </tr>
-                </thead>
-    
-                <tbody>
-                    <tr>
-                        <td>用户1</td>
-                        <td>2018-3-31</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
+
+
+        <!-- 可编辑的患者信息列表 -->
+        <div class="pat-main-container">
+
+            <div class="pat-main-item">
+                <!-- 可编辑的个人信息 -->
+                <form class=" form-horizontal">
+                    <div class="form-group flex-start" style="width:100%">
+                        <h3>个人信息</h3>
+                        <button type="submit" class="btn btn-default update-pat-btn">更新</button>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start" style="width:30%" for="">姓名</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start" style="width:30%" for="">患者识别号</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start" style="width:30%" for="">实验分组</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start" style="width:30%" for="">危险等级</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start" style="width:30%" for="">地址</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start" style="width:30%" for="">联系电话</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="" placeholder="">
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="pat-main-item">
+                <div class=" pat-followup-table-heading">
+                    <span>
+                        <h3>血压记录</h3>
+                    </span>
+                </div>
+                <div class=" pat-main-table" style="margin-bottom:20px">
+                    <!-- Table -->
+                    <div style="height:120px;width:60%;overflow:auto">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>收缩压</th>
+                                    <th>舒张压</th>
+                                    <th>记录时间</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>120</td>
+                                    <td>98</td>
+                                    <td>2018-3-31</td>
+                                </tr>
+                                <tr>
+                                    <td>112</td>
+                                    <td>89</td>
+                                    <td>2018-3-31</td>
+                                </tr>
+                                <tr>
+                                    <td>112</td>
+                                    <td>89</td>
+                                    <td>2018-3-31</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="btn-group" style="height:120px;width:20%">
+                        <button type="button" class="btn btn-primary">添加</button>
+                        <button type="button" class="btn btn-default">修改</button>
+                        <button type="button" class="btn btn-danger">删除</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="pat-main-item">
+                <!-- 可编辑的危险因素 -->
+                <form class=" form-horizontal">
+                    <div class="form-group flex-start" style="width:100%">
+                        <h3>危险因素</h3>
+                        <button type="submit" class="btn btn-default update-pat-btn">更新</button>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start " style="width:70%" for="">是否伴有靶器官损害</label>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">
+                                yes
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#">yes</a>
+                                </li>
+                                <li>
+                                    <a href="#">no</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start" style="width:70%" for="">是否伴有临床疾患</label>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">
+                                yes
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#">yes</a>
+                                </li>
+                                <li>
+                                    <a href="#">no</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start" style="width:70%" for="">高血压等级</label>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">
+                                1
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#">1</a>
+                                </li>
+                                <li>
+                                    <a href="#">2</a>
+                                </li>
+                                <li>
+                                    <a href="#">3</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group flex-start" style="width:40%">
+                        <label class=" control-label flex-start " style="width:70%" for="">具有几项危险因素</label>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="true">
+                                >=3
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#">>=1</a>
+                                </li>
+                                <li>
+                                    <a href="#">none</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- 患者随访时间列表 -->
+        <div class="pat-followup-container">
+            <div class="panel panel-info pat-followup-table">
+                <div class="panel-heading pat-followup-table-heading">
+                    <span>近期随访时间</span>
+                </div>
+                <!-- Table -->
+                <div style="height:260px;width:100%;overflow:auto">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>是否完成</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr onclick='alert("hello")'>
+                                <td>2018-3-31</td>
+                                <td>√</td>
+                            </tr>
+                            <tr onclick='alert("hello")'>
+                                <td>2018-3-31</td>
+                                <td>√</td>
+                            </tr>
+                            <tr onclick='alert("hello")'>
+                                <td>2018-3-31</td>
+                                <td>√</td>
+                            </tr>
+                            <tr onclick='alert("hello")'>
+                                <td>2018-3-31</td>
+                                <td>√</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="pat-followup-text">
+                <div>
+                    <h3>
+                        距离下次随访X天
+                    </h3>
+
+                </div>
+            </div>
+            <div class="pat-followup-btn">
+                <button type="button" class="btn btn-primary">结束管理</button>
+                <button type="button" class="btn btn-danger">删除病人</button>
+            </div>
+        </div>
+
     </div>
-        
-
-    <!-- 可编辑的患者信息列表 -->
-    <div class="pat-main-container">
-        <div style="width:100%"><span>main</span></div>
-    </div>
-
-    <!-- 患者随访时间列表 -->
-    <div class="pat-followup-container">
-        <div style="width:100%"><span>followup</span></div>
-    </div>
-
-  </div>
 
 
 
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="resources/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
 </body>
 
 </html>

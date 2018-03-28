@@ -6,4 +6,37 @@
     border: 2px yellow solid;
     width: 22%;
     height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.pat-followup-table{
+    margin-top: 10px;
+    height: 300px;
+}
+.pat-followup-table-heading {
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+}
+.pat-followup-table-heading > span:first-child {
+    font-size: 20px;
+}
+.pat-followup-text{
+    margin-top: 10px;
+    height: 80px;
+    border: 2px yellow solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pat-followup-btn{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
 }

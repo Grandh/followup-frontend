@@ -6,4 +6,48 @@
     border: 2px red solid;
     width: 48%;
     height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    
+}
+.pat-main-item{
+    width: 100%;
+    border: 2px red solid;
+}
+.update-pat-btn{
+   align-self: center;
+   margin-left: 70%;
+}
+.form-horizontal{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+}
+.form-input{
+    width: 70%;
+}
+.pat-main-table{
+    margin-top: 10px;
+    height: 120px;
+    display: flex;
+    justify-content: space-around;
+}
+.pat-main-table-heading {
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+}
+.pat-main-table-heading > span:first-child {
+    font-size: 20px;
+}
+.btn-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

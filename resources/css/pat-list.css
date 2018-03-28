@@ -15,13 +15,14 @@
 .pat-list-table {
     margin-top: 10px;
     height: 230px;
-    overflow: auto;
+    
 }
 
 .pat-list-table-heading {
     height: 40px;
     display: flex;
     align-items: center;
+
 }
 
 .pat-list-table-heading > span:first-child {
