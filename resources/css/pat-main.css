@@ -3,7 +3,7 @@
 * 患者可编辑面板模块 
 */
 .pat-main-container{
-    border: 2px red solid;
+    background-color:white; 
     width: 48%;
     height: 100%;
     display: flex;
@@ -13,28 +13,41 @@
 }
 .pat-main-item{
     width: 100%;
-    border: 2px red solid;
+    margin-top: 20px;
+}
+.item-title{
+    font-size:20px;
 }
 .update-pat-btn{
    align-self: center;
    margin-left: 70%;
+   width: 70px;
 }
 .form-horizontal{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.flex-start{
+
+.form-group{
     display: flex;
     justify-content: flex-start;
+    width:40%;
 }
+.control-label{
+    display: flex;
+    justify-content: flex-start;
+    width:30%;
+}
+
 .form-input{
     width: 70%;
 }
 .pat-main-table{
     margin-top: 10px;
-    height: 120px;
+    height: 165px;
     display: flex;
+    margin-bottom:5px;
     justify-content: space-around;
 }
 .pat-main-table-heading {
@@ -43,11 +56,13 @@
     align-items: center;
 
 }
-.pat-main-table-heading > span:first-child {
-    font-size: 20px;
-}
+
 .btn-group{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    height:140px;
+    width:10%;
+    margin-left: -5%;
+    margin-top: 10px;
 }

@@ -3,12 +3,14 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color:white;
   }
 
 .custom-header {
-    margin-left: 20px;
-    border: 1px blue solid;
-    height:150px;
+    background-color: #1c5da5;
+    height:70px;
+    color: white;
+    padding-left: 20px;
 }
 
 .main-container {
@@ -18,3 +20,24 @@
     height: 600px;
 }
 
+.modal-body-item{
+    display:flex;
+    margin-left: 10%;
+    width:80%;
+    justify-content:space-around;
+    align-items:center;
+    margin-bottom: 10px;
+}
+
+footer {
+  background-color: #1c5da5;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  position: fixed;
+  left: 0%;
+  bottom: 0%;
+  right: 0;
+  height: 35px;
+  padding: 5px;
+}

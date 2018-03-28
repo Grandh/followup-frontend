@@ -3,7 +3,7 @@
 *  患者列表部分
 */
 .pat-list-container {
-    border: 2px black solid;    
+    background-color:white; 
     width: 22%;
     height: 100%;
     display: flex;
@@ -14,15 +14,15 @@
 /* 定义单个table的属性 */
 .pat-list-table {
     margin-top: 10px;
-    height: 230px;
-    
+    height: 280px;
+
 }
 
 .pat-list-table-heading {
     height: 40px;
     display: flex;
     align-items: center;
-
+    justify-content: flex-start;
 }
 
 .pat-list-table-heading > span:first-child {
@@ -31,6 +31,7 @@
 
 .add-pat-btn {
     width: 80px;
-    float: right;
-    margin-left: 20px;
+    align-self: center;
+    margin-left: 50%;
 }
+
