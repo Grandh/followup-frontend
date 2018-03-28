@@ -1,0 +1,35 @@
+/* 
+*  页面左侧
+*  患者列表部分
+*/
+.pat-list-container {
+    border: 2px black solid;    
+    width: 22%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+/* 定义单个table的属性 */
+.pat-list-table {
+    margin-top: 10px;
+    height: 230px;
+    overflow: auto;
+}
+
+.pat-list-table-heading {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.pat-list-table-heading > span:first-child {
+    font-size: 20px;
+}
+
+.add-pat-btn {
+    width: 80px;
+    float: right;
+    margin-left: 20px;
+}

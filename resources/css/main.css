@@ -1,0 +1,13 @@
+/* 最上方的header */
+.custom-header {
+    margin-left: 20px;
+    border: 1px blue solid
+}
+
+.main-container {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    height: 500px;
+}
+

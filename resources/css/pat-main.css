@@ -1,0 +1,9 @@
+/* 
+* 页面中部
+* 患者可编辑面板模块 
+*/
+.pat-main-container{
+    border: 2px red solid;
+    width: 48%;
+    height: 100%;
+}

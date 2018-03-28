@@ -1,0 +1,9 @@
+/* 
+*  页面右侧
+*  患者随访信息列表 & 两个button
+*/
+.pat-followup-container{
+    border: 2px yellow solid;
+    width: 22%;
+    height: 100%;
+}
