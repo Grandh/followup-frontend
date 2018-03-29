@@ -9,20 +9,12 @@
     <title>RCT 患者管理与随访排期系统</title>
 
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/style.css" rel="stylesheet">
     <!-- 自定义的样式 -->
     <link href="resources/css/main.css" rel="stylesheet">
     <link href="resources/css/pat-list.css" rel="stylesheet">
     <link href="resources/css/pat-main.css" rel="stylesheet">
     <link href="resources/css/pat-followup.css" rel="stylesheet">
 
-    <script type="text/javascript">
-        function changeclass() {
-            var obj = document.getElementById("tr1");
-            obj.className = "success";
-        }
-
-    </script>
 </head>
 
 <body class="flex-container">
@@ -43,6 +35,10 @@
                         <div style="width:30%;">患者ID</div>
                         <input type="text" class="form-control" id="" placeholder="输入新患者ID">
                     </div>
+                    <div class="modal-body-item">
+                        <div style="width:30%;">实验分组</div>
+                        <input type="" class="form-control" id="" placeholder="">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消
@@ -56,13 +52,7 @@
         </div>
         <!-- /.modal -->
     </div>
-    <script>
-        $(function () {
-            $('#myModal').modal({
-                keyboard: true
-            })
-        });
-    </script>
+
     <!-- 模态框2（Modal） -->
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -146,51 +136,14 @@
                 </div>
                 <!-- Table -->
                 <div style="height:240px;width:100%;overflow:auto">
-                    <table class="table table-striped table-hover ">
+                    <table class="table table-hover ">
                         <thead>
                             <tr>
                                 <th>姓名</th>
                                 <th>下次随访时间</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr id="tr1" onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
-
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
+                        <tbody id="exp-group-list">
                         </tbody>
                     </table>
                 </div>
@@ -202,7 +155,7 @@
                 </div>
                 <!-- Table -->
                 <div style="height:240px;width:100%;overflow:auto">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>姓名</th>
@@ -210,11 +163,7 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr onclick="changeclass()">
-                                <td>用户1</td>
-                                <td>2018-3-31</td>
-                            </tr>
+                        <tbody id="ctr-group-list">
                         </tbody>
                     </table>
                 </div>
@@ -226,53 +175,52 @@
         <div class="pat-main-container">
             <!-- 可编辑的个人信息 -->
             <div class="pat-main-item">
-                <form class=" form-horizontal">
-                    <div class="form-group " style="width:100%">
+                <div class="form-horizontal">
+                    <div class="form-group" style="width:100%">
                         <div class="item-title">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp个人信息
                         </div>
-                        <button type="submit" class="btn btn-default update-pat-btn">更新</button>
+                        <button class="btn btn-default update-pat-btn" onclick="updatePatInfo()">更新</button>
                     </div>
                     <div class="form-group ">
-                        <label class=" control-label" for="">姓名</label>
+                        <label class="control-label" for="">姓名</label>
                         <div class="form-input">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" id="main-pat-name" placeholder="">
                         </div>
                     </div>
                     <div class="form-group ">
                         <label class=" control-label " for="">患者ID</label>
                         <div class="form-input">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" id="main-pat-ide" placeholder="" disabled>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label class=" control-label " for="">实验分组</label>
                         <div class="form-input">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" id="main-pat-group" placeholder="">
                         </div>
                     </div>
                     <div class="form-group ">
                         <label class=" control-label " for="">危险等级</label>
                         <div class="form-input">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" id="main-pat-risklevel" placeholder="" disabled>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label class=" control-label " for="">地址</label>
                         <div class="form-input">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" id="main-pat-address" placeholder="">
                         </div>
                     </div>
                     <div class="form-group ">
                         <label class=" control-label " for="">联系电话</label>
                         <div class="form-input">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" id="main-pat-phone" placeholder="">
                         </div>
                     </div>
-
-
-                </form>
+                </div>
             </div>
+            
             <div class="pat-main-item">
                 <div class=" pat-followup-table-heading">
                     <div class="item-title">
@@ -476,10 +424,9 @@
 
     </div>
 
-
-
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/pat-list.js"></script>
 </body>
 <footer>
     <span class="glyphicon glyphicon-copyright-mark"></span>

@@ -27,11 +27,15 @@
 
 .pat-list-table-heading > span:first-child {
     font-size: 20px;
+    width: 60px;
 }
 
+.pat-item-active {
+    background:	#1E90FF;
+}
 .add-pat-btn {
     width: 80px;
     align-self: center;
-    margin-left: 50%;
+    margin-left: 40%;
 }
 
