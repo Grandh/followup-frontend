@@ -9,6 +9,7 @@
     <title>RCT 患者管理与随访排期系统</title>
 
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
     <!-- 自定义的样式 -->
     <link href="resources/css/main.css" rel="stylesheet">
     <link href="resources/css/pat-list.css" rel="stylesheet">
@@ -270,100 +271,48 @@
             </div>
             <div class="pat-main-item">
                 <!-- 可编辑的危险因素 -->
-                <form class=" form-horizontal">
+                <form class="form-horizontal">
                     <div class="form-group " style="width:100%">
                         <div class="item-title">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp危险因素
                         </div>
-                        <button type="submit" class="btn btn-default update-pat-btn">更新</button>
+                        <button class="btn btn-default update-pat-btn">更新</button>
                     </div>
                     <div class="form-group">
-                        <label class=" control-label" style="width:70%" for="">是否伴有靶器官损害</label>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="true">
-                                未知
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <a href="#">yes</a>
-                                </li>
-                                <li>
-                                    <a href="#">no</a>
-                                </li>
-                                <li>
-                                    <a href="#">none</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <label class="control-label risk-group" >是否伴有靶器官损害</label>
+                        <select class="form-control risk-group-select" id="target-organ-select">
+                            <option value="0">没有记录</option>
+                            <option value="1">无</option>
+                            <option value="2">有</option>
+                        </select>
                     </div>
-                    <div class="form-group ">
-                        <label class=" control-label " style="width:70%" for="">是否伴有临床疾患</label>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="true">
-                                未知
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <a href="#">yes</a>
-                                </li>
-                                <li>
-                                    <a href="#">no</a>
-                                </li>
-                                <li>
-                                    <a href="#">none</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="form-group">
+                        <label class="control-label risk-group">是否伴有临床疾患</label>
+                        <select class="form-control risk-group-select" id="compalication-select">
+                            <option value="0">没有记录</option>
+                            <option value="1">无</option>
+                            <option value="2">有</option>
+                        </select>
                     </div>
-                    <div class="form-group ">
-                        <label class=" control-label " style="width:70%" for="">高血压等级</label>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="true">
-                                未知
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">none</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="form-group">
+                        <label class="control-label risk-group">高血压等级</label>
+                        <select class="form-control risk-group-select" id="hypertension-select">
+                            <option value="0">没有记录</option>
+                            <option value="1">一级</option>
+                            <option value="2">二级</option>
+                            <option value="3">三级</option>
+                        </select>
                     </div>
-                    <div class="form-group ">
-                        <label class=" control-label  " style="width:70%" for="">具有几项危险因素</label>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="true">
-                                未知
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <a href="#">>=3</a>
-                                </li>
-                                <li>
-                                    <a href="#">>=1</a>
-                                </li>
-                                <li>
-                                    <a href="#">none</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="form-group">
+                        <label class="control-label risk-group">有几项危险因素</label>
+                        <select class="form-control risk-group-select" id="risk-factors-select">
+                            <option value="0">没有记录</option>
+                            <option value="1">无</option>
+                            <option value="2">一项及以上</option>
+                            <option value="3">三项及以上</option>
+                        </select>
                     </div>
+
                 </form>
             </div>
 
@@ -406,6 +355,7 @@
                     </table>
                 </div>
             </div>
+
             <div class="pat-followup-text">
                 <div class="text-left">
                     <h4>距离下次随访还有：</h4>
@@ -413,8 +363,8 @@
                 <div class="text-center" style="font-size:20px">
                     X天
                 </div>
-
             </div>
+
             <div class="pat-followup-btn">
                 <button type="button" class="btn btn-default">计算下次随访时间</button>
                 <button type="button" class="btn btn-primary">结束管理</button>
@@ -426,6 +376,7 @@
 
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>    
     <script src="resources/js/pat-list.js"></script>
 </body>
 <footer>

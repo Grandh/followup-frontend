@@ -65,3 +65,12 @@
     margin-left: -5%;
     margin-top: 10px;
 }
+
+/* 危险因素编辑的select panel */
+.risk-group {
+    width: 70%;
+}
+
+.risk-group-select {
+    width: 40%
+}

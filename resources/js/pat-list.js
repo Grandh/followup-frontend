@@ -57,6 +57,16 @@ function getSinglePatData ( PatIde ) {
 }
 
 // 主面板上的患者信息页面
+function getMainInfoPanel () {
+    var PatName = $('#main-pat-name').val()
+    var PatIde = $('#main-pat-ide').val()
+    var PatGroup = $('#main-pat-group').val()
+    var PatRiskLevel = $('#main-pat-risklevel').val()
+    var PatAddress = $('#main-pat-address').val()
+    var PatPhone = $('#main-pat-phone').val()
+    return { PatName, PatIde, PatGroup, PatRiskLevel, PatAddress, PatPhone}
+}
+
 function setMainInfoPanel ( res ) {
     var PatInfo = res.PatInfo
     var PatName = $('#main-pat-name')
@@ -91,17 +101,22 @@ function updatePatInfo ( data ) {
         }
     })
 }
-function getMainInfoPanel () {
-    var PatName = $('#main-pat-name').val()
-    var PatIde = $('#main-pat-ide').val()
-    var PatGroup = $('#main-pat-group').val()
-    var PatRiskLevel = $('#main-pat-risklevel').val()
-    var PatAddress = $('#main-pat-address').val()
-    var PatPhone = $('#main-pat-phone').val()
-    console.log({ PatName, PatIde, PatGroup, PatRiskLevel, PatAddress, PatPhone})
-    return { PatName, PatIde, PatGroup, PatRiskLevel, PatAddress, PatPhone}
-}
 
 // 主面板下的患者危险因素页面
+function getPatRiskFactor () {
+    var TargetOrgan = $('#target-organ-select').val()
+    var Compalication = $('#compalication-select').val()
+    var hypertension = $('#hypertension-select').val()
+    var RiskFactors = $('#risk-factors-select').val()
+    return { TargetOrgan, Compalication, hypertension, RiskFactors }
+}
 
-window.onload = getAllPatients
+function setPatRiskFactor (data) {
+    const { PatRiskFactor } = data
+    $('#target-organ-select').val(PatRiskFactor.TargetCell || 0)    
+    $('#compalication-select').val(PatRiskFactor.Compalication || 0)
+    $('#hypertension-select').val(PatRiskFactor.HypertensionClassify || 0)
+    $('#risk-factors-select').val(PatRiskFactor.RiskFactors || 0)
+}
+
+window.onload = getPatRiskFactor
