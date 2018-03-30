@@ -1,4 +1,5 @@
 hostname = '172.16.119.197:8080'
+// hostname = '120.27.141.50'
 
 selectedPat = null
 
@@ -246,9 +247,9 @@ function addNewPatient () {
         success : function(data) {
             if (data.result === 'ok'){
                 if (patData.PatGroup === '实验组') {
-                    addPat2List('exp', patData.patIde, patData.patName, null)
+                    addPat2List('exp', patData.PatIde, patData.PatName, null)
                 } else {
-                    addPat2List('ctr', patData.patIde, patData.patName, null)
+                    addPat2List('ctr', patData.PatIde, patData.PatName, null)
                 }
                 displayAlert("患者新增成功")
             } else {
@@ -389,6 +390,36 @@ function deleteBPRecord () {
     })
 }
 
+// 删除患者
+function deletePatient() {
+    if (selectedPat === null) return  
+    hideAlert()
+    var patData = {'PatIde': selectedPat}
+    $.ajax({
+        url : `http://${hostname}/copd/RCT/followup/deletePat`,
+        type: 'POST',        
+        dataType : "json",
+        data: patData,
+        success : function(data) {
+            if (data.result === 'ok'){
+                $(`#pat-list-${selectedPat}`).remove()
+                displayAlert("患者删除成功")   
+            } else {
+                displayAlert("患者删除错误", 'danger')
+            }
+        },
+        error : function(data) {
+            displayAlert("患者删除错误", 'danger')
+        }
+    })
+}
+
+// 获取下次随访周期计算结果
+function calcFolloupTime(){}
+
+// 停止或继续患者管理
+function stopOrContinueMgm() {}
+
 // 运行函数
 function onStart () {
     getAllPatients()
@@ -406,6 +437,5 @@ function onStart () {
         minuteStep: 1  
     })
 }
-
 
 window.onload = onStart
