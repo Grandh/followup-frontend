@@ -9,6 +9,19 @@ selectedBP = {
     RecordTime: null
 }
 
+function hideAlert ( ) {
+    $('#alert-container').hide()
+}
+function displayAlert ( msg, type ) {
+    style = 'alert-' + (type || 'success')
+    $('#alert-container').removeClass()
+    $('#alert-container').removeClass()
+    $('#alert-container').addClass('alert')
+    $('#alert-container').addClass(style)
+    $('#alert-container').html(msg)
+    $('#alert-container').show()
+}
+
 function addPat2List (tableType, patIde, patName, nextft) {
 
     let expGroup = $(`#${tableType}-group-list`)
@@ -20,6 +33,7 @@ function addPat2List (tableType, patIde, patName, nextft) {
         $(this).addClass("pat-item-active").siblings().removeClass("pat-item-active");
         selectedPat = $(this).attr("id").split('pat-list-')[1]
         getSinglePatData(selectedPat)
+        hideAlert()
     })
     newPatItem.append(idItem);
     newPatItem.append(nameItem);
@@ -43,8 +57,10 @@ function getAllPatients () {
                     addPat2List("ctr", PatIde, PatName, NextFollowupTime)
                 }
             })
+            displayAlert('患者数据加载完成')
         },
         error : function(data) {
+            displayAlert('患者数据加载失败', 'danger')
             console.log(data)
         }
     })
@@ -62,9 +78,10 @@ function getSinglePatData ( PatIde ) {
             setBPRecordTable(data)            
             setPatRiskFactor(data)
             setFollowupTable(data)
+            displayAlert(`${selectedPat}数据加载完成`)
         },
         error : function(data) {
-            console.log(data)
+            displayAlert(`${selectedPat}数据加载失败`,'danger')
         }
     })
 }
@@ -103,6 +120,7 @@ function setMainInfoPanel ( data ) {
 
 function updatePatInfo ( data ) {
     if ( selectedPat === null ) return
+    hideAlert()
     let patData = getMainInfoPanel()
     $.ajax({
         url : `http://${hostname}/copd/RCT/followup/updatePatInfo`,
@@ -110,9 +128,10 @@ function updatePatInfo ( data ) {
         dataType : "json",
         data: patData,
         success : function(data) {
+            displayAlert(`${selectedPat}个人信息更新完成`)
         },
         error : function(data) {
-            console.log(data)
+            displayAlert(`${selectedPat}个人信息更新失败`,'danger')
         }
     })
 }
@@ -133,6 +152,7 @@ function addBPRecordItem (Id, Systolic, Diastolic, RecordTime) {
         selectedBP.Systolic = BPTrList[0].innerHTML
         selectedBP.Diastolic = BPTrList[1].innerHTML
         selectedBP.RecordTime = BPTrList[2].innerHTML
+        hideAlert()
     })
     newBPItem.append(sysItem);
     newBPItem.append(diaItem)
@@ -173,6 +193,7 @@ function setPatRiskFactor (data) {
 
 function updatePatRiskFactor () {
     if ( selectedPat === null ) return
+    hideAlert()
     let patData = getPatRiskFactor()
     $.ajax({
         url : `http://${hostname}/copd/RCT/followup/updatePatRiskFactor`,
@@ -180,9 +201,10 @@ function updatePatRiskFactor () {
         dataType : "json",
         data: patData,
         success : function(data) {
+            displayAlert(`${selectedPat}危险因素更新完成`)
         },
         error : function(data) {
-            console.log(data)
+            displayAlert(`${selectedPat}危险因素更新失败`,'danger')
         }
     })
 }
@@ -228,12 +250,13 @@ function addNewPatient () {
                 } else {
                     addPat2List('ctr', patData.patIde, patData.patName, null)
                 }
+                displayAlert("患者新增成功")
             } else {
-                alert(data.result || '添加出错')                
+                displayAlert("患者新增错误", 'danger')             
             }
         },
         error : function(data) {
-            console.log(data)
+            displayAlert("患者新增错误", 'danger')
         }
     })
 }
@@ -250,6 +273,7 @@ function clearNewPatModal () {
 }
 function showAddNewPatModal () {
     clearNewPatModal()
+    hideAlert()
     $('#addNewPatModal').modal('show')
 }
 function commitAddNewPatModal () {
@@ -273,13 +297,15 @@ function getBPReocrdPatModal () {
 }
 function showAddBPRecordModal () {
     if (selectedPat === null) return 
+    hideAlert()
     setBPReocrdPatModal('', '', '')
     $('#commit-btn').attr("onclick","addBPRecord();");
     $('#updateBPRecordModal').modal('show')
     
 }
 function showAlterBPRecordModal () {
-    if (selectedBP.Id === null) return    
+    if (selectedBP.Id === null) return   
+    hideAlert() 
     $('#commit-btn').attr("onclick","updateBPRecord();");
     setBPReocrdPatModal(selectedBP.Systolic,selectedBP.Diastolic,selectedBP.RecordTime)
     $('#updateBPRecordModal').modal('show')
@@ -297,18 +323,21 @@ function addBPRecord ( ) {
             if (data.result !== 'failed'){
                 var newItemId = data.result
                 addBPRecordItem(newItemId, bpData.Systolic, bpData.Diastolic, bpData.RecordTime)
+                displayAlert("血压记录新增成功")
             } else {
+                displayAlert("血压记录新增错误", 'danger') 
                 alert(data.result)
             }  
         },
         error : function(data) {
-            console.log(data)
+            displayAlert("血压记录新增错误", 'danger')
         }
     })
     $('#updateBPRecordModal').modal('hide')    
 }
 function updateBPRecord ( ) {
     bpData = getBPReocrdPatModal()
+    hideAlert()
     bpData.Id = selectedBP.Id
     $.ajax({
         url : `http://${hostname}/copd/RCT/followup/updateBPRecord`,
@@ -324,12 +353,13 @@ function updateBPRecord ( ) {
                 selectedBP.Systolic = bpData.Systolic
                 selectedBP.Diastolic = bpData.Diastolic
                 selectedBP.RecordTime = bpData.RecordTime
+                displayAlert("血压记录更新成功")   
             } else {
-                alert(data.result)
+                displayAlert("血压记录新增错误", 'danger')
             }
         },
         error : function(data) {
-            console.log(data)
+            displayAlert("血压记录新增错误", 'danger')
         }
     })
     $('#updateBPRecordModal').modal('hide')    
@@ -338,6 +368,7 @@ function updateBPRecord ( ) {
 function deleteBPRecord () {
     if (selectedBP.Id === null) return  
     bpData = {'Id': selectedBP.Id}  
+    hideAlert()
     $.ajax({
         url : `http://${hostname}/copd/RCT/followup/deleteBPRecord`,
         type: 'POST',        
@@ -347,12 +378,13 @@ function deleteBPRecord () {
             if (data.result === 'ok'){
                 addBPRecordItem
                 $(`#bp-list-${selectedBP.Id}`).remove()
+                displayAlert("血压记录删除成功")   
             } else {
-                alert(data.result)
+                displayAlert("血压记录删除错误", 'danger')
             }
         },
         error : function(data) {
-            console.log(data)
+            displayAlert("血压记录删除错误", 'danger')
         }
     })
 }

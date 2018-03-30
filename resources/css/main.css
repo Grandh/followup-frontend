@@ -4,6 +4,7 @@
     min-height: 100vh;
     flex-direction: column;
     background-color:white;
+
   }
 
 .custom-header {
@@ -12,8 +13,25 @@
     color: white;
     padding-left: 20px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center
 }
 
+.custom-header > h2 {
+    width: 78%
+}
+
+#alert-container {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    height: 50%;
+    font-size: 18px;
+    text-align: center;
+    line-height: 50%;
+    display: none;
+}
 .main-container {
     display: flex;
     justify-content:space-around;
@@ -28,13 +46,6 @@
     justify-content:flex-start;
     align-items:center;
     margin-bottom: 10px;
-}
-
-.alert-position{
-width: 30%;
-position: absolute;
-right: 0px;
-bottom: 25px;
 }
 
 footer {
