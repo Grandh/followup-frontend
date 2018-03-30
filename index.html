@@ -2,221 +2,327 @@
 <html lang="zh-CN">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-  <title>RCT 患者管理与随访排期系统</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CDN-->
-  <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
-  <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/css/style.css" rel="stylesheet">
-  <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-  <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
-  <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <title>RCT 患者管理与随访排期系统</title>
+
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <link href="resources/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!-- 自定义的样式 -->
+    <link href="resources/css/main.css" rel="stylesheet">
+    <link href="resources/css/pat-list.css" rel="stylesheet">
+    <link href="resources/css/pat-main.css" rel="stylesheet">
+    <link href="resources/css/pat-followup.css" rel="stylesheet">
+
 </head>
 
 <body class="flex-container">
-  <header>
-    <h2>RCT患者数据管理与随访排期系统</h2>
-  </header>
-
-  
-  <div class="flex-body">
-    <div class="flex-center">
-      <div class="detail-content">
-        <div class="detail-header">
-          <h3>个人信息</h3>
+    <!-- 新增患者模态框 -->
+    <div class="modal fade" id="addNewPatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        新增患者
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-item">
+                        <div style="width:30%;">患者ID</div>
+                        <input type="text" class="form-control" id="newpat-id" placeholder="电话号码或身份证等唯一识别号">
+                    </div>
+                    <div class="modal-body-item">
+                        <div style="width:30%;">患者姓名</div>
+                        <input type="text" class="form-control" id="newpat-name" placeholder="新患者的姓名">
+                    </div>
+                    <div class="modal-body-item">
+                        <div style="width: 25%;">实验分组</div>
+                        <select class="form-control risk-group-select" id="newpat-group">
+                            <option value="实验组">实验组</option>
+                            <option value="对照组">对照组</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="commitAddNewPatModal()">新建用户</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
         </div>
-        <div class="detail-info">
-          <table id="detailinfo-table">
-            <tbody>
-              <tr>
-                <td class="title">姓名：</td>
-                <td class="content" id=""></td>
-                <td class="title">患者识别号：</td>
-                <td class="content" id=""></td>
-              </tr>
-              <tr>
-                <td class="title">实验分组：</td>
-                <td class="content" id=""></td>
-                <td class="title">危险等级：</td>
-                <td class="content" id=""></td>
-              </tr>
-              <tr>
-                <td class="title">地址：</td>
-                <td class="content" id=""></td>
-                <td class="title">联系电话：</td>
-                <td class="content" id=""></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="detail-content">
-        <div class="detail-header">
-          <h3>血压记录</h3>
-        </div>
-        <div class="detail-info">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>收缩压</th>
-                <th>舒张压</th>
-                <th>记录时间</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>120</td>
-                <td>98</td>
-                <td>2018-3-31</td>
-              </tr>
-              <tr>
-                <td>112</td>
-                <td>89</td>
-                <td>2018-3-31</td>
-              </tr>
-            </tbody>
-            <tfoot>
-            </tfoot>
-          </table>
-        </div>
-      </div>
-      <div class="detail-content">
-        <div class="detail-header">
-          <h3>危险因素</h3>
-        </div>
-        <div class="detail-info">
-          <ul class="list-group">
-            <li class="list-group-item">是否伴有靶器官损害</li>
-            <li class="list-group-item">是否伴有临床疾患</li>
-            <li class="list-group-item">高血压等级</li>
-            <li class="list-group-item">具有X危险因素</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="flex-left">
-      <div class="detail-content" style="flex-basis:45%">
-        <div class="panel panel-info">
-          <div class="panel-heading" style="display:flex;justify-content:space-between">
-            <h3>实验组</h3>
-            <button type="button" class="btn btn-primary">新增患者</button>
-          </div>
-          <!-- Table -->
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>姓名</th>
-                <th>下次随访时间</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>用户1</td>
-                <td>2018-3-31</td>
-              </tr>
-              <tr>
-                <td>用户1</td>
-                <td>2018-3-31</td>
-              </tr>
-            </tbody>
-            <tfoot>
-            </tfoot>
-          </table>
-        </div>
-      </div>
-      <div class="detail-content" style="flex-basis:45%">
-        <div class="panel panel-info">
-          <div class="panel-heading" style="display:flex;justify-content:space-between">
-            <h3>对照组</h3>
-            <button type="button" class="btn btn-primary">新增患者</button>
-          </div>
-          <!-- Table -->
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>姓名</th>
-                <th>下次随访时间</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>用户1</td>
-                <td>2018-3-31</td>
-              </tr>
-              <tr>
-                <td>用户1</td>
-                <td>2018-3-31</td>
-              </tr>
-            </tbody>
-            <tfoot>
-            </tfoot>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="flex-right">
-      <div class="detail-content">
-        <div class="detail-header">
-          <h3>近期随访时间</h3>
-        </div>
-        <div class="detail-info">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>随访时间</th>
-                <th>是否完成</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>2018-3-31</td>
-                <td>√</td>
-              </tr>
-              <tr>
-                <td>2018-3-31</td>
-                <td>√</td>
-              </tr>
-            </tbody>
-            <tfoot>
-            </tfoot>
-          </table>
-        </div>
-      </div>
-      <div class="detail-content">
-        <div class="detail-header">
-          <h3>具体下次随访还有</h3>
-        </div>
-        <div class="detail-text">
-          <h4>XX天</h4>
-        </div>
-      </div>
-      <div class="detail-content">
-        <button type="button" class="btn btn-primary">继续管理</button>
-        <button type="button" class="btn btn-danger">删除患者</button>
-      </div>
+        <!-- /.modal -->
     </div>
 
-  </div>
-  </div>
-  <footer>...</footer>
+    <!-- 添加血压记录 -->
+    <div class="modal fade" id="updateBPRecordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        血压记录
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-item">
+                        <div style="width:30%;">收缩压</div>
+                        <input type="text" class="form-control" id="sys-record-input" placeholder="输入收缩压">
+                    </div>
+                    <div class="modal-body-item">
+                        <div style="width:30%;">舒张压</div>
+                        <input type="text" class="form-control" id="dia-record-input" placeholder="输入舒张压">
+                    </div>
+                    <div class="modal-body-item">
+                        <div style="width:30%;">记录时间</div>
+                        <input type="text" class="form-control" data-format="yyyy-mm-dd hh:ii" id="bp-recordtime">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="commit-btn">确定</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal -->
+    </div>
+
+    <header class="custom-header">
+        <h2>RCT患者数据管理与随访排期系统</h2>
+    </header>
+
+    <div class="main-container">
+
+        <!-- 患者列表部分
+         分为实验组、对照组两个scroll bar 或者flowover: auto的table
+    -->
+        <div class="pat-list-container">
+            <div class="panel panel-info pat-list-table">
+                <div class="panel-heading pat-list-table-heading ">
+                    <span>实验组</span>
+                    <button type="button" class="btn btn-primary add-pat-btn" data-toggle="modal" data-target="#myModal" onclick="showAddNewPatModal()">新增患者</button>
+                </div>
+                <!-- Table -->
+                <div style="height:240px;width:100%;overflow:auto">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>姓名</th>
+                                <th>下次随访时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="exp-group-list">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-info pat-list-table">
+                <div class="panel-heading pat-list-table-heading">
+                    <span>对照组</span>
+                    <!-- <button type="button" class="btn btn-primary add-pat-btn " data-toggle="modal" data-target="#myModal">新增患者</button> -->
+                </div>
+                <!-- Table -->
+                <div style="height:240px;width:100%;overflow:auto">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>姓名</th>
+                                <th>下次随访时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ctr-group-list">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
 
-  <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-  <!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-  <script src="resources/js/bootstrap.min.js"></script>
+        <!-- 可编辑的患者信息列表 -->
+        <div class="pat-main-container">
+            <!-- 可编辑的个人信息 -->
+            <div class="pat-main-item">
+                <div class="form-horizontal">
+                    <div class="form-group" style="width:100%">
+                        <div class="item-title">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp个人信息
+                        </div>
+                        <button class="btn btn-default update-pat-btn" onclick="updatePatInfo()">更新</button>
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label" for="">姓名</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="main-pat-name" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label class=" control-label " for="">患者ID</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="main-pat-ide" placeholder="" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label class=" control-label " for="">实验分组</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="main-pat-group" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label class=" control-label " for="">危险等级</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="main-pat-risklevel" placeholder="" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label class=" control-label " for="">地址</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="main-pat-address" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label class=" control-label " for="">联系电话</label>
+                        <div class="form-input">
+                            <input type="text" class="form-control" id="main-pat-phone" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pat-main-item">
+                <div class=" pat-followup-table-heading">
+                    <div class="item-title">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp血压记录
+                    </div>
+                </div>
+                <div class=" pat-main-table">
+                    <!-- Table -->
+                    <div style="height:165px;width:72%;overflow:auto">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>收缩压</th>
+                                    <th>舒张压</th>
+                                    <th>记录时间</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="bp-record-list">
+
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" onclick="showAddBPRecordModal()">添加</button>
+                        <button type="button" class="btn btn-default" onclick="showAlterBPRecordModal()">修改</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteBPRecord()">删除</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="pat-main-item">
+                <!-- 可编辑的危险因素 -->
+                <div class="form-horizontal">
+                    <div class="form-group " style="width:100%">
+                        <div class="item-title">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp危险因素
+                        </div>
+                        <button class="btn btn-default update-pat-btn" onclick="updatePatRiskFactor()">更新</button>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label risk-group">是否伴有靶器官损害</label>
+                        <select class="form-control risk-group-select" id="target-organ-select">
+                            <option value="0">没有记录</option>
+                            <option value="1">无</option>
+                            <option value="2">有</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label risk-group">是否伴有临床疾患</label>
+                        <select class="form-control risk-group-select" id="compalication-select">
+                            <option value="0">没有记录</option>
+                            <option value="1">无</option>
+                            <option value="2">有</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label risk-group">高血压等级</label>
+                        <select class="form-control risk-group-select" id="hypertension-select">
+                            <option value="0">没有记录</option>
+                            <option value="1">一级</option>
+                            <option value="2">二级</option>
+                            <option value="3">三级</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label risk-group">有几项危险因素</label>
+                        <select class="form-control risk-group-select" id="risk-factors-select">
+                            <option value="0">没有记录</option>
+                            <option value="1">无</option>
+                            <option value="2">一项及以上</option>
+                            <option value="3">三项及以上</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 患者随访时间列表 -->
+        <div class="pat-followup-container">
+            <div class="panel panel-info pat-followup-table">
+                <div class="panel-heading pat-followup-table-heading">
+                    <span>近期随访时间</span>
+                </div>
+                <!-- Table -->
+                <div style="height:260px;width:100%;overflow:auto">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>是否完成</th>
+                            </tr>
+                        </thead>
+                        <tbody id="follow-up-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="pat-followup-text">
+                <div class="text-left">
+                    <h4>距离下次随访还有：</h4>
+                </div>
+                <div class="text-center" id="next-followup-fromnow" style="font-size:20px"></div>
+            </div>
+
+            <div class="pat-followup-btn">
+                <button type="button" class="btn btn-default">计算下次随访时间</button>
+                <button type="button" class="btn btn-primary">结束管理</button>
+                <button type="button" class="btn btn-danger">删除病人</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>    
+    <script src="resources/js/pat-main.js"></script>
 </body>
+<footer>
+    <span class="glyphicon glyphicon-copyright-mark"></span>
+    <span>浙江大学</span>
+</footer>
 
 </html>

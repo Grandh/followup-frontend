@@ -25,7 +25,7 @@
     display:flex;
     margin-left: 10%;
     width:80%;
-    justify-content:space-around;
+    justify-content:flex-start;
     align-items:center;
     margin-bottom: 10px;
 }
