@@ -30,6 +30,13 @@
     margin-bottom: 10px;
 }
 
+.alert-position{
+width: 30%;
+position: absolute;
+right: 0px;
+bottom: 25px;
+}
+
 footer {
   background-color: #1c5da5;
   color: white;
