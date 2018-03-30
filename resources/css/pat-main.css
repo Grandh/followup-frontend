@@ -42,6 +42,7 @@
 .form-input{
     width: 70%;
 }
+
 .pat-main-table{
     margin-top: 10px;
     height: 165px;
@@ -66,6 +67,10 @@
     margin-top: 10px;
 }
 
+/* 血压记录页面 */
+.bp-item-active {
+    background: #FFB6C1;
+}
 /* 危险因素编辑的select panel */
 .risk-group {
     width: 70%;
